@@ -44,4 +44,5 @@ gem 'http'
 gem 'rack-cors'
 gem 'jb'
 gem 'seed_dump'
-
+gem 'solargraph'
+gem 'rubocop'

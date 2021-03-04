@@ -18,8 +18,13 @@ class Api::ProductsController < ApplicationController
       description: params[:description],
       quantity: params[:quantity],
     )
-    @product.save
-    render "show.json.jb"
+
+    #happy/sad path
+    if @product.save
+      render "show.json.jb"
+    else
+      render json: { message: @product.errors.full_messages }, status: 406
+    end
   end
 
   def update
@@ -30,8 +35,13 @@ class Api::ProductsController < ApplicationController
     @product.image_url = params[:image_url] || @product.image_url
     @product.description = params[:description] || @product.description
     @product.quantity = params[:quantity] || @product.quantity
-    @product.save
-    render "show.json.jb"
+
+    #happy/sad path
+    if @product.save
+      render "show.json.jb"
+    else
+      render json: { message: @product.errors.full_messages }, status: 406
+    end
   end
 
   def delete
