@@ -1,6 +1,11 @@
 class Api::ProductsController < ApplicationController
   def index
     @products = Product.all
+
+    if params[:search]
+      @products = Recipe.where("name ILIKE ?", "*#{params[:search]}*")
+    end
+    @products = @products.order(price: :asc)
     render "index.json.jb"
   end
 
@@ -14,9 +19,9 @@ class Api::ProductsController < ApplicationController
     @product = Product.new(
       name: params[:name],
       price: params[:price],
-      image_url: params[:image_url],
       description: params[:description],
       quantity: params[:quantity],
+      supplier_id: params[:supplier_id],
     )
 
     #happy/sad path
@@ -32,9 +37,9 @@ class Api::ProductsController < ApplicationController
     @product = Product.find(product_id)
     @product.name = params[:name] || @product.name
     @product.price = params[:price] || @product.price
-    @product.image_url = params[:image_url] || @product.image_url
     @product.description = params[:description] || @product.description
     @product.quantity = params[:quantity] || @product.quantity
+    @product.supplier_id = params[:supplier_id] || @product.supplier_id
 
     #happy/sad path
     if @product.save
