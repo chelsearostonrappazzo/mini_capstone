@@ -2,7 +2,7 @@ class Api::ProductsController < ApplicationController
   def index
     # if current_user
     @products = Product.all
-
+    #search for product by word
     if params[:search]
       @products = Product.where("name ILIKE ?", "%#{params[:search]}%")
     end
