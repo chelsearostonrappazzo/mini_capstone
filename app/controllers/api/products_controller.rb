@@ -1,12 +1,16 @@
 class Api::ProductsController < ApplicationController
   def index
+    # if current_user
     @products = Product.all
 
     if params[:search]
-      @products = Recipe.where("name ILIKE ?", "*#{params[:search]}*")
+      @products = Product.where("name ILIKE ?", "%#{params[:search]}%")
     end
     @products = @products.order(price: :asc)
     render "index.json.jb"
+    # else
+    #   render json: []
+    # end
   end
 
   def show

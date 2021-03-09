@@ -18,12 +18,12 @@ class Api::SuppliersController < ApplicationController
       phone_number: params[:phone_number],
     )
 
-    # #happy/sad path
-    # if @supplier.save
-    #   render "show.json.jb"
-    # else
-    #   render json: { message: @supplier.errors.full_messages }, status: 406
-    # end
+    #happy/sad path
+    if @supplier.save
+      render "show.json.jb"
+    else
+      render json: { message: @supplier.errors.full_messages }, status: 406
+    end
   end
 
   def update
@@ -35,12 +35,12 @@ class Api::SuppliersController < ApplicationController
     @supplier.email = params[:email] || @supplier.email
     @supplier.phone_number = params[:phone_number] || @supplier.phone_number
 
-    # #happy/sad path
-    # if @supplier.save
-    #   render "show.json.jb"
-    # else
-    #   render json: { message: @supplier.errors.full_messages }, status: 406
-    # end
+    #happy/sad path
+    if @supplier.save
+      render "show.json.jb"
+    else
+      render json: { message: @supplier.errors.full_messages }, status: 406
+    end
   end
 
   def delete
