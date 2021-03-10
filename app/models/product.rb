@@ -18,11 +18,11 @@ class Product < ApplicationRecord
   #   price < 300.00
   # end
 
-  def tax
-    price * 0.09
-  end
+  # def tax
+  #   price * 0.09
+  # end
 
-  def total
-    price + tax
-  end
+  # def total
+  #   price + tax
+  # end
 end

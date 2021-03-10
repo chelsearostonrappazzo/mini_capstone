@@ -23,7 +23,13 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     unless current_user
-      render json: {}, status: :unauthorized
+      render json: { error: "Authorized Personnel Only." }, status: :unauthorized
+    end
+  end
+
+  def authenticate_admin
+    unless current_user && current_user.admin
+      render json: { error: "If you want to be authorized: Knock Knock" }, status: :unauthorized
     end
   end
 end

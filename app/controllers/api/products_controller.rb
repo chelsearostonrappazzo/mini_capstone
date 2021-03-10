@@ -1,6 +1,7 @@
 class Api::ProductsController < ApplicationController
+  before_action :authenticate_admin, except: [:index, :show]
+
   def index
-    # if current_user
     @products = Product.all
     #search for product by word
     if params[:search]
@@ -8,9 +9,6 @@ class Api::ProductsController < ApplicationController
     end
     @products = @products.order(price: :asc)
     render "index.json.jb"
-    # else
-    #   render json: []
-    # end
   end
 
   def show
