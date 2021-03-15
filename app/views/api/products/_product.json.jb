@@ -9,6 +9,7 @@
   supplier_email: product.supplier.email,
   supplier_phone_number: product.supplier.phone_number,
   images: product.images,
+  categories: product.categories,
 # pricing: {
 #   discount: product.is_discounted?,
 #   tax: product.tax,
